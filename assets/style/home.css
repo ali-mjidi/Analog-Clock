@@ -1,0 +1,139 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 0 50px;
+    background-color: #282828;
+    font-family: sans-serif;
+}
+
+.clock {
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    border: 7px solid #282828;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5),
+        inset -4px -4px 10px rgba(60, 60, 60, 0.5),
+        inset 4px 4px 10px rgba(0, 0, 0, 0.5),
+        -4px -4px 10px rgba(30, 30, 30, 0.5);
+    position: relative;
+    align-items: center;
+    padding: 10px;
+}
+
+.numberHolder {
+    position: absolute;
+    inset: 20px;
+    text-align: center;
+    transform: rotate(calc(var(--index) * (360deg / 12)));
+    color: #ddd;
+}
+
+.number {
+    display: inline-block;
+    font-size: 30px;
+    color: var(--black-color);
+    transform: rotate(calc(var(--index) * (-360deg / 12)));
+}
+
+.hand {
+    z-index: 90;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    transform-origin: 0 100%;
+    border-radius: 50px;
+    border: 1px black solid;
+}
+
+.secondHand {
+    width: 3px;
+    height: 40%;
+    background-color: red;
+    z-index: 99;
+}
+
+.secondHand::after,
+.secondHand::before {
+    content: "";
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+}
+
+.secondHand::after {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+}
+
+.secondHand::before {
+    width: 10px;
+    height: 10px;
+    z-index: 2;
+    background-color: #282828;
+}
+
+.minuteHand {
+    width: 5px;
+    height: 35%;
+    background-color: white;
+    z-index: 91;
+}
+
+.hourHand {
+    width: 8px;
+    height: 25%;
+    background-color: white;
+}
+
+.switch {
+    padding: 15px 25px;
+    border-radius: 15px;
+    font-size: 24px;
+    font-family: sans-serif;
+    cursor: pointer;
+    box-shadow: 0 0 15px 0px aliceblue;
+    border: none;
+    background-color: aliceblue;
+}
+
+/* LIGHT MODE */
+
+body.light {
+    background-color: aliceblue;
+}
+
+body.light .clock {
+    background-color: white;
+    border: none;
+    box-shadow: 2px 15px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+body.light .numberHolder {
+    color: black;
+}
+
+body.light .minuteHand,
+body.light .hourHand,
+body.light .secondHand::before {
+    background-color: black;
+}
+
+body.light .switch {
+    box-shadow: 0 0 15px 1px #282828;
+}
